@@ -1,2 +1,0 @@
-/home/fedor/GaAsDetector/build/CMakeFiles/N02.dir
-/home/fedor/GaAsDetector/build/CMakeFiles/exampleN02.dir

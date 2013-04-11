@@ -2,7 +2,7 @@
 # Setup the project
 #
 cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
-project(N02)
+project(GaAsDetector)
 
 #----------------------------------------------------------------------------
 # Find Geant4 package, activating all available UI and Vis drivers by default
@@ -43,25 +43,21 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
-add_executable(exampleN02 exampleN02.cc ${sources} ${headers})
-target_link_libraries(exampleN02 ${Geant4_LIBRARIES})
+add_executable(GaAsDetector GaAsDetector.cc ${sources} ${headers})
+target_link_libraries(GaAsDetector ${Geant4_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we
-# build N02. This is so that we can run the executable directly because it
+# build GaAsDetector. This is so that we can run the executable directly because it
 # relies on these scripts being in the current working directory.
 #
-set(EXAMPLEN02_SCRIPTS
-  exampleN02.err
-  exampleN02.in
-  exampleN02.large_N.in
-  exampleN02.out
+set(GaAsDetector_SCRIPTS
   run1.mac
   run2.mac
   vis.mac
   )
 
-foreach(_script ${EXAMPLEN02_SCRIPTS})
+foreach(_script ${GaAsDetector_SCRIPTS})
   configure_file(
     ${PROJECT_SOURCE_DIR}/${_script}
     ${PROJECT_BINARY_DIR}/${_script}
@@ -70,14 +66,8 @@ foreach(_script ${EXAMPLEN02_SCRIPTS})
 endforeach()
 
 #----------------------------------------------------------------------------
-# For internal Geant4 use - but has no effect if you build this
-# example standalone
-#
-add_custom_target(N02 DEPENDS exampleN02)
-
-#----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
 #
-install(TARGETS exampleN02 DESTINATION bin)
+install(TARGETS GaAsDetector DESTINATION bin)
 
 
