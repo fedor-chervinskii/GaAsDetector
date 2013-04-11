@@ -1,0 +1,22 @@
+{
+srand(time(0));
+TFile f("SpectrKotovGeo4.root");
+TH1D *hist = (TH1D*) f.Get("h_40kV_Geo4");
+hist->Draw();
+bool generated = false;
+int randx,randy;
+int Emax = 300;
+int Nmax = 150;
+while (generated == false) 
+{
+  randx = rand() % Emax;
+  randy = rand() % Nmax;
+  Int_t bin = hist->GetXaxis()->FindBin(randx);
+  Float_t y = hist->GetBinContent(bin);
+  if (randy < y) {generated = true;}	
+}
+Float_t y = hist->GetBinContent(bin);
+printf("N = %f \n", y);
+printf("y = %f \n", randy);
+printf("x = %f \n", randx);
+}
